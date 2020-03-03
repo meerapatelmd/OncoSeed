@@ -1,11 +1,10 @@
-Package: OncoLeaf
+Package: oncoLeaf
 Type: Package
-Title: OncoTree API Calls
+Title: OncoTree API calls and a Oncotree Code search function
 Version: 0.1.0
-Author: Meera Patel
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Author: Meera Y. Patel, MD
+Maintainer: Meera Y. Patel, MD <patelm9@mskcc.org>
+Description: This package performs API calls at mskcc.oncotree.org as well as searches a local temporary transformed dataframe for an OncoTree code.
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
