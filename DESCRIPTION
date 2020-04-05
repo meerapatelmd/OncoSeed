@@ -1,10 +1,10 @@
-Package: oncoLeaf
+Package: OncoSeed
 Type: Package
-Title: OncoTree API calls and a Oncotree Code search function
+Title: Functions for OncoTree API calls
 Version: 0.1.0
 Author: Meera Y. Patel, MD
 Maintainer: Meera Y. Patel, MD <patelm9@mskcc.org>
-Description: This package performs API calls at mskcc.oncotree.org as well as searches a local temporary transformed dataframe for an OncoTree code.
+Description: This package performs API calls at mskcc.oncotree.org. 
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
