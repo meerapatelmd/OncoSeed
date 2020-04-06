@@ -12,6 +12,9 @@ search_tumor_types <-
         function(type, search, exact_match = TRUE, levels = 1:5) {
                 ##Massaging parameters
                 levels <- paste(levels, collapse = ",")
+
+                search <- stringr::str_replace_all(search, pattern = " ", "%20")
+
                 baseURL <- "http://oncotree.mskcc.org"
                 resp <- httr::GET(paste0(baseURL, "/api/tumorTypes/search/", type, "/", search),
                                   query = list(exactMatch = exact_match,
