@@ -40,7 +40,7 @@
 
 
 <meta property="og:title" content="Search Tumor Types — search_tumor_types" />
-<meta property="og:description" content="Search Tumor Types" />
+<meta property="og:description" content="Primitive for all `search_*` and `lookup_*` functions in this package." />
 
 
 
@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">OncoSeed</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -114,10 +114,16 @@
     </div>
 
     <div class="ref-description">
-    <p>Search Tumor Types</p>
+    <p>Primitive for all `search_*` and `lookup_*` functions in this package.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>search_tumor_types</span><span class='op'>(</span><span class='va'>type</span>, <span class='va'>search</span>, exact_match <span class='op'>=</span> <span class='cn'>TRUE</span>, levels <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>search_tumor_types</span><span class='op'>(</span>
+  <span class='va'>type</span>,
+  <span class='va'>search</span>,
+  exact_match <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  version <span class='op'>=</span> <span class='st'>"oncotree_latest_stable"</span>,
+  level <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -135,11 +141,19 @@
       <td><p>If it sets to true, it will only return one element array.</p></td>
     </tr>
     <tr>
-      <th>levels</th>
-      <td><p>vector of integers ranging from 1:5</p></td>
+      <th>version</th>
+      <td><p>OncoTree version. One of "oncotree_latest_stable," "oncotree_candidate_release," or "oncotree_development".</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>a [tibble][tibble::tibble-package]</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/urltools/man/encoder.html'>url_decode</a></code>
+ <code><a href='https://httr.r-lib.org/reference/GET.html'>GET</a></code>,<code><a href='https://httr.r-lib.org/reference/content.html'>content</a></code>,<code><a href='https://httr.r-lib.org/reference/http_error.html'>http_error</a></code>
+ <code><a href='https://rdrr.io/pkg/jsonlite/man/fromJSON.html'>toJSON, fromJSON</a></code></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

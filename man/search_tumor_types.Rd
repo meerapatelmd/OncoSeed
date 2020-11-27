@@ -4,7 +4,13 @@
 \alias{search_tumor_types}
 \title{Search Tumor Types}
 \usage{
-search_tumor_types(type, search, exact_match = TRUE, levels = 1:5)
+search_tumor_types(
+  type,
+  search,
+  exact_match = TRUE,
+  version = "oncotree_latest_stable",
+  level = 1:5
+)
 }
 \arguments{
 \item{type}{one of "code", "name", "mainType", "level", "nci", "umls", or "color"}
@@ -13,8 +19,16 @@ search_tumor_types(type, search, exact_match = TRUE, levels = 1:5)
 
 \item{exact_match}{If it sets to true, it will only return one element array.}
 
-\item{levels}{vector of integers ranging from 1:5}
+\item{version}{OncoTree version. One of "oncotree_latest_stable," "oncotree_candidate_release," or "oncotree_development".}
+}
+\value{
+a [tibble][tibble::tibble-package]
 }
 \description{
-Search Tumor Types
+Primitive for all `search_*` and `lookup_*` functions in this package.
+}
+\seealso{
+\code{\link[urltools]{url_decode}}
+ \code{\link[httr]{GET}},\code{\link[httr]{content}},\code{\link[httr]{http_error}}
+ \code{\link[jsonlite]{toJSON, fromJSON}}
 }

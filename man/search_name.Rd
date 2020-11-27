@@ -4,15 +4,22 @@
 \alias{search_name}
 \title{Search Name}
 \usage{
-search_name(search, exact_match = TRUE, levels = 1:5)
+search_name(search, exact_match = TRUE, level = 1:5)
 }
 \arguments{
 \item{search}{character vector of length one of the query}
 
 \item{exact_match}{If it sets to true, it will only return one element array.}
-
-\item{levels}{vector of integers ranging from 1:5}
+}
+\value{
+a [tibble][tibble::tibble-package]
 }
 \description{
 Search Name
 }
+\seealso{
+Other search functions: 
+\code{\link{search_level}()},
+\code{\link{search_main_type}()}
+}
+\concept{search functions}

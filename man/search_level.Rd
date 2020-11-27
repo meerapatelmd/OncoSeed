@@ -4,13 +4,17 @@
 \alias{search_level}
 \title{Search level}
 \usage{
-search_level(level, exact_match = TRUE)
+search_level(level)
 }
-\arguments{
-\item{level}{vector of length 1}
-
-\item{exact_match}{If it sets to true, it will only return one element array.}
+\value{
+a [tibble][tibble::tibble-package]
 }
 \description{
-Search level
+Return OncoTree by Level
 }
+\seealso{
+Other search functions: 
+\code{\link{search_main_type}()},
+\code{\link{search_name}()}
+}
+\concept{search functions}

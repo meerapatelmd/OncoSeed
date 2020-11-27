@@ -1,7 +1,7 @@
 Type: Package
 Package: OncoSeed
 Title: An R Interface to Memorial Sloan Kettering's OncoTree API
-Version: 0.1.0
+Version: 0.2.0
 Authors@R: 
     person(given = "Meera",
            family = "Patel, MD",
@@ -17,6 +17,7 @@ BugReports: https://github.com/meerapatelmd/OncoSeed/issues/
 Imports: 
     httr,
     jsonlite,
+    urltools,
     tibble
 Encoding: UTF-8
 LazyData: true

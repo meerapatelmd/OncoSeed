@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get tumorTypes Tree — get_tumor_types_tree • OncoSeed</title>
+<title>Lookup NCI Code — lookup_nci • OncoSeed</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Get tumorTypes Tree — get_tumor_types_tree" />
-<meta property="og:description" content="Return all available tumor types." />
+<meta property="og:title" content="Lookup NCI Code — lookup_nci" />
+<meta property="og:description" content="Lookup NCI Code" />
 
 
 
@@ -108,28 +108,37 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get tumorTypes Tree</h1>
-    <small class="dont-index">Source: <a href='https://github.com/meerapatelmd/OncoSeed/blob/master/R/get.R'><code>R/get.R</code></a></small>
-    <div class="hidden name"><code>get_tumor_types_tree.Rd</code></div>
+    <h1>Lookup NCI Code</h1>
+    <small class="dont-index">Source: <a href='https://github.com/meerapatelmd/OncoSeed/blob/master/R/lookup.R'><code>R/lookup.R</code></a></small>
+    <div class="hidden name"><code>lookup_nci.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Return all available tumor types.</p>
+    <p>Lookup NCI Code</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_tumor_types_tree</span><span class='op'>(</span>version <span class='op'>=</span> <span class='st'>"oncotree_latest_stable"</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>lookup_nci</span><span class='op'>(</span><span class='va'>nci_code</span>, exact_match <span class='op'>=</span> <span class='cn'>TRUE</span>, level <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>)</span></pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>nci_code</th>
+      <td><p>NCI Code to lookup.</p></td>
+    </tr>
+    <tr>
+      <th>exact_match</th>
+      <td><p>If it sets to true, it will only return one element array.</p></td>
+    </tr>
+    </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>a [tibble][tibble::tibble-package]</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other get functions: 
-<code><a href='get_main_types.html'>get_main_types</a>()</code>,
-<code><a href='get_oncotree_versions.html'>get_oncotree_versions</a>()</code>,
-<code><a href='get_tumor_types_txt.html'>get_tumor_types_txt</a>()</code>,
-<code><a href='get_tumor_types.html'>get_tumor_types</a>()</code></p></div>
+    <div class='dont-index'><p>Other lookup functions: 
+<code><a href='lookup_umls.html'>lookup_umls</a>()</code></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

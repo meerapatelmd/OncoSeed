@@ -1,18 +1,30 @@
 #' Search level
-#' @param level vector of length 1
-#' @param exact_match If it sets to true, it will only return one element array.
-#' @importFrom httr GET
-#' @importFrom httr content
-#' @importFrom jsonlite fromJSON
+#' @description
+#' Return OncoTree by Level
+#' @inheritParams pkg_args
 #' @export
+#' @importFrom dplyr bind_rows
+#' @return a [tibble][tibble::tibble-package]
+#' @rdname search_level
+#' @family search functions
 
 search_level <-
-  function(level, exact_match = TRUE) {
-    search_tumor_types(
-      type = "level",
-      search = level,
-      exact_match = exact_match
-    )
+  function(level) {
+
+          output <- list()
+          for (i in seq_along(level)) {
+
+                  output[[i]] <-
+                            search_tumor_types(
+                              type = "level",
+                              search = level[i],
+                              exact_match = TRUE
+                            )
+
+          }
+
+          output %>%
+                  dplyr::bind_rows()
   }
 
 
@@ -20,21 +32,24 @@ search_level <-
 
 
 #' Search mainType
-#' @param search character vector of length one of the query
-#' @param exact_match If it sets to true, it will only return one element array.
-#' @param levels vector of integers ranging from 1:5
-#' @importFrom httr GET
-#' @importFrom httr content
-#' @importFrom jsonlite fromJSON
+#'
+#' @description
+#' Search mainType. To return all possible mainTypes, see \code{\link{get_main_types}}.
+#'
+#' @inheritParams pkg_args
+#'
 #' @export
+#' @return a [tibble][tibble::tibble-package]
+#' @rdname search_main_type
+#' @family search functions
 
 search_main_type <-
-  function(search, exact_match = TRUE, levels = 1:5) {
+  function(search, exact_match = TRUE, level = 1:5) {
     search_tumor_types(
       type = "mainType",
       search = search,
       exact_match = exact_match,
-      levels = levels
+      level = level
     )
   }
 
@@ -43,98 +58,77 @@ search_main_type <-
 
 
 #' Search Name
-#' @param search character vector of length one of the query
-#' @param exact_match If it sets to true, it will only return one element array.
-#' @param levels vector of integers ranging from 1:5
-#' @importFrom httr GET
-#' @importFrom httr content
-#' @importFrom jsonlite fromJSON
+#'
+#' @inheritParams pkg_args
+#'
 #' @export
+#' @return a [tibble][tibble::tibble-package]
+#' @rdname search_name
+#' @family search functions
 
 search_name <-
-  function(search, exact_match = TRUE, levels = 1:5) {
+  function(search, exact_match = TRUE, level = 1:5) {
     search_tumor_types(
       type = "name",
       search = search,
       exact_match = exact_match,
-      levels = levels
+      level = level
     )
   }
-
-
-
-
-
-#' Search NCI
-#' @param search character vector of length one of the query
-#' @param exact_match If it sets to true, it will only return one element array.
-#' @param levels vector of integers ranging from 1:5
-#' @importFrom httr GET
-#' @importFrom httr content
-#' @importFrom jsonlite fromJSON
-#' @export
-
-search_nci <-
-  function(search, exact_match = TRUE, levels = 1:5) {
-    search_tumor_types(
-      type = "nci",
-      search = search,
-      exact_match = exact_match,
-      levels = levels
-    )
-  }
-
-
-
 
 
 #' Search Tumor Types
-#' @param type one of "code", "name", "mainType", "level", "nci", "umls", or "color"
-#' @param search character vector of length one of the query
-#' @param exact_match If it sets to true, it will only return one element array.
-#' @param levels vector of integers ranging from 1:5
-#' @importFrom httr GET
-#' @importFrom httr content
-#' @importFrom jsonlite fromJSON
+#' @description
+#' Primitive for all `search_*` and `lookup_*` functions in this package.
+#' @inheritParams pkg_args
+#' @seealso
+#'  \code{\link[urltools]{url_decode}}
+#'  \code{\link[httr]{GET}},\code{\link[httr]{content}},\code{\link[httr]{http_error}}
+#'  \code{\link[jsonlite]{toJSON, fromJSON}}
+#' @rdname search_tumor_types
 #' @export
+#' @importFrom urltools url_encode
+#' @importFrom httr GET content http_error
+#' @importFrom jsonlite fromJSON
+#' @return a [tibble][tibble::tibble-package]
 
 search_tumor_types <-
-  function(type, search, exact_match = TRUE, levels = 1:5) {
+  function(type, search, exact_match = TRUE, version = "oncotree_latest_stable", level = 1:5) {
+
+          # type <- "name"
+          # search <- "breast carcinoma"
+          # exact_match <- TRUE
+          # level <- 1:5
+
     ## Massaging parameters
-    levels <- paste(levels, collapse = ",")
+    level <- paste(level, collapse = ",")
+    search <- urltools::url_encode(search)
 
-    search <- stringr::str_replace_all(search, pattern = " ", "%20")
-
-    baseURL <- "http://oncotree.mskcc.org"
-    resp <- httr::GET(paste0(baseURL, "/api/tumorTypes/search/", type, "/", search),
+    resp <- httr::GET(sprintf("%s/api/tumorTypes/search/%s/%s", baseURL, type, search),
       query = list(
         exactMatch = exact_match,
-        levels = levels
+        version = version,
+        level = level
       )
     )
+
+
     parsed <- jsonlite::fromJSON(httr::content(resp, "text"))
+
+
+    if (httr::http_error(resp)) {
+
+            stop(
+                    sprintf(
+                            "OncoTree API request <%s> failed \n[%s] %s: %s",
+                            resp$request$url,
+                            parsed$status,
+                            parsed$error,
+                            parsed$message
+                    ),
+                    call. = FALSE
+            )
+    }
+
     return(parsed)
-  }
-
-
-
-
-
-#' Search UMLS
-#' @param search character vector of length one of the query
-#' @param exact_match If it sets to true, it will only return one element array.
-#' @param levels vector of integers ranging from 1:5
-#' @importFrom httr GET
-#' @importFrom httr content
-#' @importFrom jsonlite fromJSON
-#' @export
-
-search_umls <-
-  function(search, exact_match = TRUE, levels = 1:5) {
-    search_tumor_types(
-      type = "umls",
-      search = search,
-      exact_match = exact_match,
-      levels = levels
-    )
   }

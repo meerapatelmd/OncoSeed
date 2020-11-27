@@ -4,8 +4,19 @@
 \alias{get_tumor_types_tree}
 \title{Get tumorTypes Tree}
 \usage{
-get_tumor_types_tree()
+get_tumor_types_tree(version = "oncotree_latest_stable")
+}
+\value{
+a [tibble][tibble::tibble-package]
 }
 \description{
-Get tumorTypes Tree
+Return all available tumor types.
 }
+\seealso{
+Other get functions: 
+\code{\link{get_main_types}()},
+\code{\link{get_oncotree_versions}()},
+\code{\link{get_tumor_types_txt}()},
+\code{\link{get_tumor_types}()}
+}
+\concept{get functions}
