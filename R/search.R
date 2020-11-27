@@ -7,12 +7,13 @@
 #' @export
 
 search_level <-
-        function(level, exact_match = TRUE) {
-                search_tumor_types(type = "level",
-                                   search = level,
-                                   exact_match = exact_match)
-
-        }
+  function(level, exact_match = TRUE) {
+    search_tumor_types(
+      type = "level",
+      search = level,
+      exact_match = exact_match
+    )
+  }
 
 
 
@@ -28,13 +29,14 @@ search_level <-
 #' @export
 
 search_main_type <-
-        function(search, exact_match = TRUE, levels = 1:5) {
-                search_tumor_types(type = "mainType",
-                                   search = search,
-                                   exact_match = exact_match,
-                                   levels = levels)
-
-        }
+  function(search, exact_match = TRUE, levels = 1:5) {
+    search_tumor_types(
+      type = "mainType",
+      search = search,
+      exact_match = exact_match,
+      levels = levels
+    )
+  }
 
 
 
@@ -50,13 +52,14 @@ search_main_type <-
 #' @export
 
 search_name <-
-        function(search, exact_match = TRUE, levels = 1:5) {
-                search_tumor_types(type = "name",
-                                   search = search,
-                                   exact_match = exact_match,
-                                   levels = levels)
-
-        }
+  function(search, exact_match = TRUE, levels = 1:5) {
+    search_tumor_types(
+      type = "name",
+      search = search,
+      exact_match = exact_match,
+      levels = levels
+    )
+  }
 
 
 
@@ -72,13 +75,14 @@ search_name <-
 #' @export
 
 search_nci <-
-        function(search, exact_match = TRUE, levels = 1:5) {
-                search_tumor_types(type = "nci",
-                                   search = search,
-                                   exact_match = exact_match,
-                                   levels = levels)
-
-        }
+  function(search, exact_match = TRUE, levels = 1:5) {
+    search_tumor_types(
+      type = "nci",
+      search = search,
+      exact_match = exact_match,
+      levels = levels
+    )
+  }
 
 
 
@@ -95,19 +99,22 @@ search_nci <-
 #' @export
 
 search_tumor_types <-
-        function(type, search, exact_match = TRUE, levels = 1:5) {
-                ##Massaging parameters
-                levels <- paste(levels, collapse = ",")
+  function(type, search, exact_match = TRUE, levels = 1:5) {
+    ## Massaging parameters
+    levels <- paste(levels, collapse = ",")
 
-                search <- stringr::str_replace_all(search, pattern = " ", "%20")
+    search <- stringr::str_replace_all(search, pattern = " ", "%20")
 
-                baseURL <- "http://oncotree.mskcc.org"
-                resp <- httr::GET(paste0(baseURL, "/api/tumorTypes/search/", type, "/", search),
-                                  query = list(exactMatch = exact_match,
-                                               levels = levels))
-                parsed <- jsonlite::fromJSON(httr::content(resp, "text"))
-                return(parsed)
-        }
+    baseURL <- "http://oncotree.mskcc.org"
+    resp <- httr::GET(paste0(baseURL, "/api/tumorTypes/search/", type, "/", search),
+      query = list(
+        exactMatch = exact_match,
+        levels = levels
+      )
+    )
+    parsed <- jsonlite::fromJSON(httr::content(resp, "text"))
+    return(parsed)
+  }
 
 
 
@@ -123,15 +130,11 @@ search_tumor_types <-
 #' @export
 
 search_umls <-
-        function(search, exact_match = TRUE, levels = 1:5) {
-                search_tumor_types(type = "umls",
-                                   search = search,
-                                   exact_match = exact_match,
-                                   levels = levels)
-
-        }
-
-
-
-
-
+  function(search, exact_match = TRUE, levels = 1:5) {
+    search_tumor_types(
+      type = "umls",
+      search = search,
+      exact_match = exact_match,
+      levels = levels
+    )
+  }
