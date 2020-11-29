@@ -18,3 +18,7 @@ OncoTree maps to both the UMLS Metathesaurus CUI and the NCI Thesaurus Code. Oth
     - [metaorite](https://github.com/meerapatelmd/metaorite): Postgres methods   
 * [CallMeMaybe](https://github.com/meerapatelmd/CallMeMaybe): R interface with the UMLS API   
 
+## Code of Conduct
+  
+  Please note that the OncoSeed project is released with a [Contributor Code of Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.
+
